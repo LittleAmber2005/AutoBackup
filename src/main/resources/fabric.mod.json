@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "autobackup",
+  "version": "${version}",
+  "name": "AutoBackup",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Amber/AutoBackup"
+  },
+  "license": "MIT",
+  "icon": "assets/autobackup/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "pers.hpcx.autobackup.AutoBackup"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
