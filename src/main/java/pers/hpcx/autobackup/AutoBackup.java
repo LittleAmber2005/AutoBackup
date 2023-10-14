@@ -8,7 +8,6 @@ import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,15 +31,15 @@ public class AutoBackup implements ModInitializer, ServerLifecycleEvents.ServerS
         for (int i = 0; i < BACKUP_FILES.length; i++) {
             srcFiles[i] = GAME_DIR.resolve(BACKUP_FILES[i]).toFile();
         }
-        File zipFile = BACKUP_PATH.resolve(TIME_FORMATTER.format(LocalDateTime.now()) + ".zip").toFile();
+        File zipFile = BACKUP_PATH.resolve(TIME_FORMATTER.format(LocalDateTime.now()) + ".compress").toFile();
         try {
             LOGGER.info("Backup started...");
             long cost = -System.currentTimeMillis();
-            ZipUtils.zip(srcFiles, zipFile);
+            ZipCompressUtils.compress(srcFiles, zipFile, LOGGER);
             cost += System.currentTimeMillis();
             LOGGER.info("Backup successfully");
             LOGGER.info("File: %s, Size: %dbytes, Cost: %dms".formatted(zipFile.getName(), zipFile.length(), cost));
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.error("Failed to backup", e);
         }
     }
