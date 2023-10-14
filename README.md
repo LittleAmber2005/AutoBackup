@@ -1,6 +1,6 @@
 # AutoBackup
 
-A mod implementing automatic server backup.
+A mod that implements automatic server backup.
 
 Made for servers! Clients don't have to install AutoBackup to connect to the server.
 
